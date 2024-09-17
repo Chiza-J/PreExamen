@@ -1,28 +1,33 @@
 
 module.exports = (sequelize, Sequelize) => {
-    const Customer = sequelize.define('customer',{
-        id:{
+    const Usuarios = sequelize.define('usuario',{
+        id_usuario:{
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        firstname: {
+        nombre: {
             type: Sequelize.STRING
         },
-        lastname: {
+        apellido: {
             type: Sequelize.STRING
         },
-        address: {
+        email: {
             type: Sequelize.STRING
         },
-        age:{
+        telefono:{
             type: Sequelize.INTEGER
         },
-        copyrightby: {
-            type: Sequelize.STRING,
-            defaultValue: 'UMG Antigua'
+        direccion:{
+            type: Sequelize.STRING
+        },
+        fecha_registro:{
+            type: Sequelize.DATEONLY
+        },
+        estado: {
+            type: Sequelize.STRING
         }
     });
     
-    return Customer;
+    return Usuarios;
 }
