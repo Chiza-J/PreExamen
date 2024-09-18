@@ -5,7 +5,7 @@ const usuarios = require('../controllers/usuarios.controller.js');
 
 
 
-// Employee routes
+// Usuarios routes
 router.post('/api/usuarios/create', usuarios.create);
 router.get('/api/usuarios/all', usuarios.retrieveAllUsuarios);
 router.get('/api/usuarios/onebyid/:id', usuarios.getUsuarioById);
