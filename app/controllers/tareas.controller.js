@@ -1,17 +1,18 @@
+const db = require('../config/db.config.js');
+const Tarea = db.Tarea;  // Asegúrate de usar la referencia correcta al modelo
+
 // Create a new Tarea
 exports.create = (req, res) => {
-    let tarea = {};
-    try {
-        // Building Tarea object from request body
-        tarea.id_proyecto = req.body.id_proyecto;
-        tarea.nombre = req.body.nombre;
-        tarea.estado = req.body.estado;
-        tarea.fecha_creacion = req.body.fecha_creacion;
-        tarea.fecha_vencimiento = req.body.fecha_vencimiento;
+    let nuevaTarea = {};  // Cambié 'tarea' a 'nuevaTarea' para evitar confusión
 
-        // Save to MySQL database
-        Tareas.create(tarea).then(result => {
-            // Send response with created Tarea
+    try {
+        nuevaTarea.id_proyecto = req.body.id_proyecto;
+        nuevaTarea.nombre = req.body.nombre;
+        nuevaTarea.estado = req.body.estado;
+        nuevaTarea.fecha_creacion = req.body.fecha_creacion;
+        nuevaTarea.fecha_vencimiento = req.body.fecha_vencimiento;
+
+        Tarea.create(nuevaTarea).then(result => {
             res.status(200).json({
                 message: "Tarea creada con éxito",
                 tarea: result,
@@ -27,7 +28,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Tareas
 exports.retrieveAllTareas = (req, res) => {
-    Tareas.findAll()
+    Tarea.findAll()
         .then(tareas => {
             res.status(200).json({
                 message: "Todas las Tareas obtenidas con éxito",
@@ -45,7 +46,7 @@ exports.retrieveAllTareas = (req, res) => {
 // Get a Tarea by Id
 exports.getTareaById = (req, res) => {
     let tareaId = req.params.id;
-    Tareas.findByPk(tareaId)
+    Tarea.findByPk(tareaId)
         .then(tarea => {
             res.status(200).json({
                 message: "Tarea obtenida con éxito",
@@ -64,7 +65,7 @@ exports.getTareaById = (req, res) => {
 exports.updateById = async (req, res) => {
     try {
         let tareaId = req.params.id;
-        let tarea = await Tareas.findByPk(tareaId);
+        let tarea = await Tarea.findByPk(tareaId);
 
         if (!tarea) {
             res.status(404).json({
@@ -80,7 +81,7 @@ exports.updateById = async (req, res) => {
                 fecha_vencimiento: req.body.fecha_vencimiento,
             };
 
-            let result = await Tareas.update(updatedObject, {
+            let result = await Tarea.update(updatedObject, {
                 returning: true,
                 where: { id_tarea: tareaId },
             });
@@ -102,7 +103,7 @@ exports.updateById = async (req, res) => {
 exports.deleteById = async (req, res) => {
     try {
         let tareaId = req.params.id;
-        let tarea = await Tareas.findByPk(tareaId);
+        let tarea = await Tarea.findByPk(tareaId);
 
         if (!tarea) {
             res.status(404).json({

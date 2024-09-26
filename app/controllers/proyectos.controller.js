@@ -1,16 +1,17 @@
+const db = require('../config/db.config.js');
+const Proyecto = db.Proyecto;  // Asegúrate de usar la referencia correcta al modelo
+
 // Create a new Proyecto
 exports.create = (req, res) => {
-    let proyecto = {};
-    try {
-        // Building Proyecto object from request body
-        proyecto.id_usuario = req.body.id_usuario;
-        proyecto.nombre = req.body.nombre;
-        proyecto.descripcion = req.body.descripcion;
-        proyecto.fecha_creacion = req.body.fecha_creacion;
+    let nuevoProyecto = {};  // Cambié 'proyecto' a 'nuevoProyecto' para evitar confusión
 
-        // Save to MySQL database
-        Proyectos.create(proyecto).then(result => {
-            // Send response with created Proyecto
+    try {
+        nuevoProyecto.id_usuario = req.body.id_usuario;
+        nuevoProyecto.nombre = req.body.nombre;
+        nuevoProyecto.descripcion = req.body.descripcion;
+        nuevoProyecto.fecha_creacion = req.body.fecha_creacion;
+
+        Proyecto.create(nuevoProyecto).then(result => {
             res.status(200).json({
                 message: "Proyecto creado con éxito",
                 proyecto: result,
@@ -26,7 +27,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Proyectos
 exports.retrieveAllProyectos = (req, res) => {
-    Proyectos.findAll()
+    Proyecto.findAll()
         .then(proyectos => {
             res.status(200).json({
                 message: "Todos los Proyectos obtenidos con éxito",
@@ -44,7 +45,7 @@ exports.retrieveAllProyectos = (req, res) => {
 // Get a Proyecto by Id
 exports.getProyectoById = (req, res) => {
     let proyectoId = req.params.id;
-    Proyectos.findByPk(proyectoId)
+    Proyecto.findByPk(proyectoId)
         .then(proyecto => {
             res.status(200).json({
                 message: "Proyecto obtenido con éxito",
@@ -63,7 +64,7 @@ exports.getProyectoById = (req, res) => {
 exports.updateById = async (req, res) => {
     try {
         let proyectoId = req.params.id;
-        let proyecto = await Proyectos.findByPk(proyectoId);
+        let proyecto = await Proyecto.findByPk(proyectoId);
 
         if (!proyecto) {
             res.status(404).json({
@@ -78,7 +79,7 @@ exports.updateById = async (req, res) => {
                 fecha_creacion: req.body.fecha_creacion,
             };
 
-            let result = await Proyectos.update(updatedObject, {
+            let result = await Proyecto.update(updatedObject, {
                 returning: true,
                 where: { id_proyecto: proyectoId },
             });
@@ -100,7 +101,7 @@ exports.updateById = async (req, res) => {
 exports.deleteById = async (req, res) => {
     try {
         let proyectoId = req.params.id;
-        let proyecto = await Proyectos.findByPk(proyectoId);
+        let proyecto = await Proyecto.findByPk(proyectoId);
 
         if (!proyecto) {
             res.status(404).json({
