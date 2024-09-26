@@ -1,7 +1,6 @@
-
 module.exports = (sequelize, Sequelize) => {
-    const Usuarios = sequelize.define('usuario',{
-        id_usuario:{
+    const Usuarios = sequelize.define('usuario', {
+        id_usuario: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -9,25 +8,16 @@ module.exports = (sequelize, Sequelize) => {
         nombre: {
             type: Sequelize.STRING
         },
-        apellido: {
+        correo: {
             type: Sequelize.STRING
         },
-        email: {
+        contrasena: {
             type: Sequelize.STRING
         },
-        telefono:{
-            type: Sequelize.INTEGER
-        },
-        direccion:{
-            type: Sequelize.STRING
-        },
-        fecha_registro:{
+        fecha_creacion: {
             type: Sequelize.DATEONLY
-        },
-        estado: {
-            type: Sequelize.STRING
         }
     });
-    
+
     return Usuarios;
-}
+};

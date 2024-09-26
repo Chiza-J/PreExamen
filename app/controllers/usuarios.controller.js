@@ -5,12 +5,9 @@ exports.create = (req, res) => {
     try {
         // Building Usuario object from request body
         usuario.nombre = req.body.nombre;
-        usuario.apellido = req.body.apellido;
-        usuario.email = req.body.email;
-        usuario.telefono = req.body.telefono;
-        usuario.direccion = req.body.direccion;
-        usuario.fecha_registro = req.body.fecha_registro;
-        usuario.estado = req.body.estado;
+        usuario.correo = req.body.correo;
+        usuario.contrasena = req.body.contrasena;
+        usuario.fecha_creacion = req.body.fecha_creacion;
 
         // Save to MySQL database
         Usuarios.create(usuario).then(result => {
@@ -77,17 +74,14 @@ exports.updateById = async (req, res) => {
         } else {
             let updatedObject = {
                 nombre: req.body.nombre,
-                apellido: req.body.apellido,
-                email: req.body.email,
-                telefono: req.body.telefono,
-                direccion: req.body.direccion,
-                fecha_registro: req.body.fecha_registro,
-                estado: req.body.estado,
+                correo: req.body.correo,
+                contrasena: req.body.contrasena,
+                fecha_creacion: req.body.fecha_creacion,
             };
 
             let result = await Usuarios.update(updatedObject, {
                 returning: true,
-                where: { id: usuarioId },
+                where: { id_usuario: usuarioId },
             });
 
             res.status(200).json({
