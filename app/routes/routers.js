@@ -4,6 +4,7 @@ const router = express.Router();
 const usuarios = require('../controllers/usuarios.controller.js');
 const proyectos= require('../controllers/proyectos.controller.js');
 const tareas= require('../controllers/tareas.controller.js');
+const servicios = require('../controllers/servicios.controller.js');
 
 
 
@@ -30,6 +31,13 @@ router.get('/api/tareas/all', tareas.retrieveAllTareas);
 router.get('/api/tareas/onebyid/:id', tareas.getTareaById);
 router.put('/api/tareas/update/:id', tareas.updateById);
 router.delete('/api/tareas/delete/:id', tareas.deleteById);
+
+// servicios routes
+router.post('/api/servicios/create', servicios.create);
+router.get('/api/servicios/all', servicios.retrieveAllServicios);
+router.get('/api/servicios/onebyid/:id', servicios.getServicioById);
+router.put('/api/servicios/update/:id', servicios.updateById);
+router.delete('/api/servicios/delete/:id', servicios.deleteById);
 
 
 module.exports = router;
