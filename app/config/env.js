@@ -1,8 +1,8 @@
 const env = {
-    database: 'examen2_vkbi',
-    username: 'examen2_vkbi_user',
-    password: 'R8vK7zbuPEeOMX03uzQbL6QdeoTnAQOl',
-    host: 'dpg-crqag0aj1k6c738dnkk0-a.oregon-postgres.render.com',
+    database: 'examenfinal_52jk',
+    username: 'examenfinal_52jk_user',
+    password: 'oAAfxxg4BCbolo2ueJ0uAvNGlzT7vvUY',
+    host: 'dpg-cslseibtq21c73duefpg-a.oregon-postgres.render.com',
     port: '5432',
     dialect: 'postgres',
 
