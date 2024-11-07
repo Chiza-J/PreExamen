@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const usuarios = require('../controllers/usuarios.controller.js');
+const juegos = require('../controllers/juegos.controller.js');
 
 
 
 
-// Usuarios routes
-router.post('/api/usuarios/create', usuarios.create);
-router.get('/api/usuarios/all', usuarios.retrieveAllUsuarios);
-router.get('/api/usuarios/onebyid/:id', usuarios.getUsuarioById);
-router.put('/api/usuarios/update/:id', usuarios.updateById);
-router.delete('/api/usuarios/delete/:id', usuarios.deleteById);
+// juegos routes
+router.post('/api/juegos/create', juegos.create);
+router.get('/api/juegos/all', juegos.retrieveAllJuegos);
+router.get('/api/juegos/onebyid/:id', juegos.getJuegoById);
+router.put('/api/juegos/update/:id', juegos.updateById);
+router.delete('/api/juegos/delete/:id', juegos.deleteById);
 
 
 module.exports = router;
