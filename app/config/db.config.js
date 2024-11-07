@@ -25,7 +25,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.Usuario = require('../models/juegos.models.js')(sequelize, Sequelize);
+db.Juego = require('../models/juegos.models.js')(sequelize, Sequelize);
 
 
 module.exports = db;
